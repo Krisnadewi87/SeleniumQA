@@ -8,6 +8,19 @@ async function exampleTest() {
     try {
         // Open the URL on the browser
         await driver.get("https://www.google.com");
+
+
+        // Searchin in searchbox
+        let searchBox = await driver.findElement(By.name('q'));
+
+        // Simulate user behavior typing "Hellow World!"
+        await searchBox.sendKeys ("Hello World!", Key.RETURN);
+        await driver.wait(until.elementLocated(By.id('result-stats')), 10000);
+
+
+        let title = await driver.getTitle();
+        console.log(`Page Title is: ${title}`);
+
     } finally {
         // Close the browser
         await driver.quit();
