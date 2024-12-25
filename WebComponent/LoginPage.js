@@ -14,15 +14,16 @@ class LoginPage {
         await this.driver.get('https://www.saucedemo.com/');
     }
 
-    async login(user, pass) {
-        await this.driver.findElement(this.usernameInput).sendKeys(user);
-        await this.driver.findElement(this.passwordInput).sendKeys(pass);
+    async login(username, password) {
+        await this.driver.findElement(this.usernameInput).sendKeys(username);
+        await this.driver.findElement(this.passwordInput).sendKeys(password);
         await this.driver.findElement(this.loginButton).click();
     }
 
     async getErrorMessage() {
         try {
             const errorElement = await this.driver.findElement(this.errorMessage);
+            return await errorElement.getText();
         } catch (err) {
             return null;
         }
